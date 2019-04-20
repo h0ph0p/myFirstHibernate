@@ -1,6 +1,7 @@
 package DAO;
 
 
+import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import sushchnost.*;
 import org.hibernate.Session;
@@ -11,12 +12,14 @@ import java.util.List;
 
 public class daoGoods {
 
+
     public GoodsEntity findById(int id) {
         return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(GoodsEntity.class, id);
     }
 
     public void save(GoodsEntity GoodsEntity) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        SessionFactory ssession = HibernateSessionFactoryUtil.getSessionFactory();
+        Session session = ssession.openSession();
         Transaction tx1 = session.beginTransaction();
         session.save(GoodsEntity);
         tx1.commit();

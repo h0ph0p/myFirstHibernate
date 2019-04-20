@@ -4,8 +4,10 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:postgresql://localhost:5432/prac</property>
-        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/prac</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">1</property>
         <mapping class="sushchnost.CharacteristicsEntity"/>
         <mapping class="sushchnost.CustomersEntity"/>
         <mapping class="sushchnost.GoodsEntity"/>
@@ -13,8 +15,7 @@
         <mapping class="sushchnost.ProducerEntity"/>
         <mapping class="sushchnost.ReceiveTEntity"/>
         <mapping class="sushchnost.TotalOrdersEntity"/>
-        <!-- <property name="connection.username"/> -->
-        <!-- <property name="connection.password"/> -->
+
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->

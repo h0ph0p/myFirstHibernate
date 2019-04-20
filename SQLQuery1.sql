@@ -39,10 +39,10 @@ CREATE TABLE GOODS (
 );
 
 CREATE TABLE CHARACTERISTICS (
-  	type_id	smallint PRIMARY KEY,
+  	type_id	serial PRIMARY KEY,
   	type_name	varchar(50),
-	characteristic_1 float,
-	characteristic_2 float,
+	characteristic_1 varchar(50),
+	characteristic_2 varchar(50),
 	characteristic_3 varchar(50),
 	characteristic_4 varchar(50),
 	characteristic_5 varchar(50),

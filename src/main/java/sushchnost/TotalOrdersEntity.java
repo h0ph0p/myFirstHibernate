@@ -10,15 +10,9 @@ public class TotalOrdersEntity {
     private int orderId;
     private Double totalCost;
     private Timestamp dateOfOrder;
-    private Short receivingId;
-    private Short customerId;
     private Collection<OrdersEntity> ordersByOrderId;
     private ReceiveTEntity receiveTByReceivingId;
     private CustomersEntity customersByCustomerId;
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
 
     @Id
     @Column(name = "order_id", nullable = false)
@@ -26,7 +20,7 @@ public class TotalOrdersEntity {
         return orderId;
     }
 
-    public void setOrderId(short orderId) {
+    public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
 
@@ -50,26 +44,6 @@ public class TotalOrdersEntity {
         this.dateOfOrder = dateOfOrder;
     }
 
-    @Basic
-    @Column(name = "receiving_id", nullable = true)
-    public Short getReceivingId() {
-        return receivingId;
-    }
-
-    public void setReceivingId(Short receivingId) {
-        this.receivingId = receivingId;
-    }
-
-    @Basic
-    @Column(name = "customer_id", nullable = true)
-    public Short getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Short customerId) {
-        this.customerId = customerId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,19 +54,15 @@ public class TotalOrdersEntity {
         if (orderId != that.orderId) return false;
         if (totalCost != null ? !totalCost.equals(that.totalCost) : that.totalCost != null) return false;
         if (dateOfOrder != null ? !dateOfOrder.equals(that.dateOfOrder) : that.dateOfOrder != null) return false;
-        if (receivingId != null ? !receivingId.equals(that.receivingId) : that.receivingId != null) return false;
-        if (customerId != null ? !customerId.equals(that.customerId) : that.customerId != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) orderId;
+        int result = orderId;
         result = 31 * result + (totalCost != null ? totalCost.hashCode() : 0);
         result = 31 * result + (dateOfOrder != null ? dateOfOrder.hashCode() : 0);
-        result = 31 * result + (receivingId != null ? receivingId.hashCode() : 0);
-        result = 31 * result + (customerId != null ? customerId.hashCode() : 0);
         return result;
     }
 

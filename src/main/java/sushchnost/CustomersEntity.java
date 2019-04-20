@@ -6,7 +6,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "customers", schema = "public", catalog = "prac")
 public class CustomersEntity {
-    private short customerId;
+    private int customerId;
     private String login;
     private String pasword;
     private String fio;
@@ -14,11 +14,11 @@ public class CustomersEntity {
 
     @Id
     @Column(name = "customer_id", nullable = false)
-    public short getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(short customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 

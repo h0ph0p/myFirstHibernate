@@ -15,10 +15,10 @@ public class daoOrders {
         return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(OrdersEntity.class, id);
     }
 
-    public void save(OrdersEntity CustomersEntity) {
+    public void save(OrdersEntity OrdersEntity) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.save(CustomersEntity);
+        session.save(OrdersEntity);
         tx1.commit();
         session.close();
     }

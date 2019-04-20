@@ -6,8 +6,6 @@ import javax.persistence.*;
 @Table(name = "goods", schema = "public", catalog = "prac")
 public class GoodsEntity {
     private int id;
-    private String typeName;
-    private Short producerId;
     private String image;
     private String dimensions;
     private String description;
@@ -18,7 +16,6 @@ public class GoodsEntity {
     private String characteristic5;
     private String characteristic6;
     private String availability;
-    private Short typeId;
     private CharacteristicsEntity characteristicsByTypeId;
     private ProducerEntity producerByProducerId;
 
@@ -30,26 +27,6 @@ public class GoodsEntity {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Basic
-    @Column(name = "type_name", nullable = true, length = 50)
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
-
-    @Basic
-    @Column(name = "producer_id", nullable = true)
-    public Short getProducerId() {
-        return producerId;
-    }
-
-    public void setProducerId(Short producerId) {
-        this.producerId = producerId;
     }
 
     @Basic
@@ -160,8 +137,6 @@ public class GoodsEntity {
         GoodsEntity that = (GoodsEntity) o;
 
         if (id != that.id) return false;
-        if (typeName != null ? !typeName.equals(that.typeName) : that.typeName != null) return false;
-        if (producerId != null ? !producerId.equals(that.producerId) : that.producerId != null) return false;
         if (image != null ? !image.equals(that.image) : that.image != null) return false;
         if (dimensions != null ? !dimensions.equals(that.dimensions) : that.dimensions != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
@@ -185,8 +160,6 @@ public class GoodsEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (typeName != null ? typeName.hashCode() : 0);
-        result = 31 * result + (producerId != null ? producerId.hashCode() : 0);
         result = 31 * result + (image != null ? image.hashCode() : 0);
         result = 31 * result + (dimensions != null ? dimensions.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
@@ -198,16 +171,6 @@ public class GoodsEntity {
         result = 31 * result + (characteristic6 != null ? characteristic6.hashCode() : 0);
         result = 31 * result + (availability != null ? availability.hashCode() : 0);
         return result;
-    }
-
-    @Basic
-    @Column(name = "type_id", nullable = true)
-    public Short getTypeId() {
-        return typeId;
-    }
-
-    public void setTypeId(Short typeId) {
-        this.typeId = typeId;
     }
 
     @ManyToOne

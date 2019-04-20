@@ -7,7 +7,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "receive_t", schema = "public", catalog = "prac")
 public class ReceiveTEntity {
-    private short receivingId;
+    private int receivingId;
     private String receivingType;
     private Timestamp dateOfReceiving;
     private String express;
@@ -16,11 +16,11 @@ public class ReceiveTEntity {
 
     @Id
     @Column(name = "receiving_id", nullable = false)
-    public short getReceivingId() {
+    public int getReceivingId() {
         return receivingId;
     }
 
-    public void setReceivingId(short receivingId) {
+    public void setReceivingId(int receivingId) {
         this.receivingId = receivingId;
     }
 

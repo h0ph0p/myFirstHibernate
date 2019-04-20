@@ -1,6 +1,7 @@
 package DAO;
 
 
+import org.hibernate.query.Query;
 import sushchnost.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -8,17 +9,22 @@ import utils.HibernateSessionFactoryUtil;
 import java.util.List;
 
 
+
+
+
+
+
 public class daoCharacteristics {
 
 
-    public CharacteristicsEntity findById(int id) {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(CharacteristicsEntity.class, id);
+    public CharacteristicsEntity findByTypeId(int type_id) {
+        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(CharacteristicsEntity.class, type_id);
     }
 
-    public void save(CharacteristicsEntity CustomersEntity) {
+    public void save(CharacteristicsEntity CharacteristicsEntity) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.save(CustomersEntity);
+        session.save(CharacteristicsEntity);
         tx1.commit();
         session.close();
     }
@@ -43,9 +49,14 @@ public class daoCharacteristics {
         return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(GoodsEntity.class, type_id);
     }
 
+
+
+
     public List<CharacteristicsEntity> findAll() {
-        List<CharacteristicsEntity> users = (List<CharacteristicsEntity>)  HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From CharacteristicsEntity").list();
-        return users;
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        List<CharacteristicsEntity> characteristicsEntities = (List<CharacteristicsEntity>) session.createQuery("From CharacteristicsEntity").list();
+        session.close();
+        return characteristicsEntities;
     }
 }
 

@@ -6,43 +6,53 @@ import java.util.Collection;
 @Entity
 @Table(name = "characteristics", schema = "public", catalog = "prac")
 public class CharacteristicsEntity {
-    private short typeId;
-    private Double characteristic1;
-    private Double characteristic2;
+    private int typeId;
+    private String typeName;
+    private String characteristic1;
+    private String characteristic2;
     private String characteristic3;
     private String characteristic4;
     private String characteristic5;
     private String characteristic6;
-    private String typeName;
     private Collection<GoodsEntity> goodsByTypeId;
 
     @Id
     @Column(name = "type_id", nullable = false)
-    public short getTypeId() {
+    public int getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(short typeId) {
+    public void setTypeId(int typeId) {
         this.typeId = typeId;
     }
 
     @Basic
+    @Column(name = "type_name", nullable = true, length = 50)
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    @Basic
     @Column(name = "characteristic_1", nullable = true, precision = 0)
-    public Double getCharacteristic1() {
+    public String getCharacteristic1() {
         return characteristic1;
     }
 
-    public void setCharacteristic1(Double characteristic1) {
+    public void setCharacteristic1(String characteristic1) {
         this.characteristic1 = characteristic1;
     }
 
     @Basic
     @Column(name = "characteristic_2", nullable = true, precision = 0)
-    public Double getCharacteristic2() {
+    public String getCharacteristic2() {
         return characteristic2;
     }
 
-    public void setCharacteristic2(Double characteristic2) {
+    public void setCharacteristic2(String characteristic2) {
         this.characteristic2 = characteristic2;
     }
 
@@ -94,6 +104,7 @@ public class CharacteristicsEntity {
         CharacteristicsEntity that = (CharacteristicsEntity) o;
 
         if (typeId != that.typeId) return false;
+        if (typeName != null ? !typeName.equals(that.typeName) : that.typeName != null) return false;
         if (characteristic1 != null ? !characteristic1.equals(that.characteristic1) : that.characteristic1 != null)
             return false;
         if (characteristic2 != null ? !characteristic2.equals(that.characteristic2) : that.characteristic2 != null)
@@ -113,6 +124,7 @@ public class CharacteristicsEntity {
     @Override
     public int hashCode() {
         int result = (int) typeId;
+        result = 31 * result + (typeName != null ? typeName.hashCode() : 0);
         result = 31 * result + (characteristic1 != null ? characteristic1.hashCode() : 0);
         result = 31 * result + (characteristic2 != null ? characteristic2.hashCode() : 0);
         result = 31 * result + (characteristic3 != null ? characteristic3.hashCode() : 0);
@@ -122,16 +134,6 @@ public class CharacteristicsEntity {
         return result;
     }
 
-    @Basic
-    @Column(name = "type_name", nullable = true, length = 50)
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
-
     @OneToMany(mappedBy = "characteristicsByTypeId")
     public Collection<GoodsEntity> getGoodsByTypeId() {
         return goodsByTypeId;
@@ -139,5 +141,8 @@ public class CharacteristicsEntity {
 
     public void setGoodsByTypeId(Collection<GoodsEntity> goodsByTypeId) {
         this.goodsByTypeId = goodsByTypeId;
+    }
+
+    public void setGoodsByTypeId(int i) {
     }
 }
